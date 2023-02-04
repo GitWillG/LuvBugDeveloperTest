@@ -10,14 +10,15 @@ public class UIManager : MonoBehaviour
 {
     public Transform TargetSpawnPoint;
     public TextMeshProUGUI ScorePoints;
+    public TextMeshProUGUI winningPoints;
     public int Score;
     public float TimeRemaining;
     public TextMeshProUGUI Timer;
     public GameObject GameOverPanel;
+    public GameObject GameWinPanel;
     // Start is called before the first frame update
     void Start()
     {
-        TimeRemaining = 300;
         Score = 0;
         //ChangeTargetFish()
         
@@ -34,7 +35,7 @@ public class UIManager : MonoBehaviour
     //}
     public void UpdateScore()
     {
-        Score += 10;
+        Score += 1;
         ScorePoints.text = Score.ToString();
     }
     public void UpdateTime()
@@ -42,6 +43,12 @@ public class UIManager : MonoBehaviour
         TimeRemaining -= Time.deltaTime;
         int timeInt = Mathf.RoundToInt(TimeRemaining);
         Timer.text = timeInt.ToString() + " Seconds";
+        if (TimeRemaining <=0)
+        {
+            GameWinPanel.SetActive(true);
+            winningPoints.text = Score.ToString() + " fish, yummy!";
+            Time.timeScale = 0;
+        }
 
     }
     public void GameOver()
