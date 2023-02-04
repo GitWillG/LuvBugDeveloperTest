@@ -45,6 +45,10 @@ public class SharkController : MonoBehaviour
                 _UIManager.UpdateScore();
                 Invoke(nameof(GetNewTarget), 0.1f);
             }
+            else
+            {
+                _UIManager.GameOver();
+            }
             Destroy(other.gameObject);
         }
     }

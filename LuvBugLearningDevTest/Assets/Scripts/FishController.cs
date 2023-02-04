@@ -23,5 +23,6 @@ public class FishController : MonoBehaviour
     public void DisableMovement()
     {
         Speed = 0;
+        gameObject.GetComponent<OscillateObject>().enabled = false;
     }
 }
